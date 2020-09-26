@@ -18,14 +18,12 @@ public class administrarBarra extends Thread {
 
     private JProgressBar barra;
     private JTextArea mensaje;
-    private double tiempo;
     private boolean avanzar;
     private boolean vive;
 
-    public administrarBarra(JProgressBar barra, JTextArea mensaje, double tiempo) {
+    public administrarBarra(JProgressBar barra, JTextArea mensaje) {
         this.barra = barra;
         this.mensaje = mensaje;
-        this.tiempo = tiempo;
         this.avanzar = true;
         this.vive = true;
     }
@@ -65,7 +63,6 @@ public class administrarBarra extends Thread {
                     barra.setMaximum(0);
                     barra.setString("");
                     while (vive) {
-                        //mensaje.append("Mensaje enviado.");
                         JOptionPane.showMessageDialog(null, "Mensaje enviado.");
                         avanzar = false;
                         vive = false;

@@ -74,7 +74,7 @@ public class Usuario extends Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "Usuario{" + "nombreUsuario=" + nombreUsuario + ", contrase\u00f1a=" + contraseña + ", chats=" + chats + ", solicitudes=" + solicitudes + ", calidadWifi=" + calidadWifi + '}';
+        return nombreUsuario;
     }
     
     @Override

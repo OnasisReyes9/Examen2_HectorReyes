@@ -5,6 +5,7 @@
  */
 package examen2_hectorreyes;
 
+import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -594,7 +595,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Porfavor llene todos los campos.");
         } else {
             boolean existe = false;
-            administradorUsuario adminUs = new administradorUsuario("./usuarios.lab");
+            administradorUsuario adminUs = new administradorUsuario("./usuarios.123");
             adminUs.cargarArchivo();
             Usuario usuario = new Usuario(
                     jT_nombreUsuario.getText(),
@@ -622,7 +623,7 @@ public class Main extends javax.swing.JFrame {
 
     private void btn_buscarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarUsuarioActionPerformed
         // TODO add your handling code here:
-        administradorUsuario adminUs = new administradorUsuario("./usuarios.lab");
+        administradorUsuario adminUs = new administradorUsuario("./usuarios.123");
         adminUs.cargarArchivo();
         boolean existe = false;
         limpiarTablaBuscarAmigos();
@@ -650,7 +651,7 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Porfavor llene todos los campos.");
         } else {
             boolean login = false;
-            administradorUsuario adminUs = new administradorUsuario("./usuarios.lab");
+            administradorUsuario adminUs = new administradorUsuario("./usuarios.123");
             adminUs.cargarArchivo();
             for (int i = 0; i < adminUs.getUsuarios().size(); i++) {
                 if (adminUs.getUsuarios().get(i).getNombreUsuario().equals(jT_usuarioLogin.getText())
@@ -673,7 +674,7 @@ public class Main extends javax.swing.JFrame {
     private void btn_enviarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_enviarSolicitudActionPerformed
         // TODO add your handling code here:
         if (enviarSolicitud == true) {
-            administradorUsuario adminUs = new administradorUsuario("./usuarios.lab");
+            administradorUsuario adminUs = new administradorUsuario("./usuarios.123");
             adminUs.cargarArchivo();
             String nameUsuario = jTbl_aggUsuario.getValueAt(0, 0).toString();
             for (int i = 0; i < adminUs.getUsuarios().size(); i++) {
@@ -725,31 +726,26 @@ public class Main extends javax.swing.JFrame {
 
     private void btn_aceptarSoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarSoliActionPerformed
         // TODO add your handling code here:
-        administradorUsuario adminUS = new administradorUsuario("");
-        adminUS.cargarArchivo();
+
         if (usuarioActual.getSolicitudes().size() < 0) {
             JOptionPane.showMessageDialog(this, "No existen usuarios");
         } else {
             if (jTbl_solicitudes.getSelectedRow() >= 0) {
+                administradorUsuario adminUS = new administradorUsuario("./usuarios.123");
+                adminUS.cargarArchivo();
+                int index = jTbl_solicitudes.getSelectedRow();
+                Usuario usuarioAgg = (usuarioActual.getSolicitudes().get(index));
+                usuarioActual.getAmigos().add(usuarioAgg);
+                usuarioActual.getSolicitudes().remove(index);
                 for (int i = 0; i < adminUS.getUsuarios().size(); i++) {
-                    if (adminUS.getUsuarios().get(i).equals(
-                            usuarioActual.getSolicitudes().get(jTbl_solicitudes.getSelectedRow()))) {
+                    if (usuarioAgg.equals(adminUS.getUsuarios().get(i))) {
                         adminUS.getUsuarios().get(i).getAmigos().add(usuarioActual);
-                
-                        DefaultListModel modelList = (DefaultListModel) jList_amigos.getModel();
-                        modelList.addElement(adminUS.getUsuarios().get(i));
-                        jList_amigos.setModel(modelList);
-                        
-                        usuarioActual.getAmigos().add(adminUS.getUsuarios().get(i));
-                        usuarioActual.getSolicitudes().remove(jTbl_solicitudes.getSelectedRow());
                     }
                 }
-
-                DefaultTableModel model = (DefaultTableModel) jTbl_solicitudes.getModel();
-                model.removeRow(jTbl_solicitudes.getSelectedRow());
-                jTbl_solicitudes.setModel(model);
-
+                adminUS.escribirArchivo();
                 cargarArchivo();
+                cargarAmigos();
+                limpiarTablaSolicitudes();
                 JOptionPane.showMessageDialog(this, "Se ha aceptado una solicitud.");
             } else {
                 JOptionPane.showMessageDialog(this, "No has seleccionado ningún usuario.");
@@ -774,11 +770,13 @@ public class Main extends javax.swing.JFrame {
             int calidadWifiAmigo = usuarioActual.getAmigos().get(jList_amigos.getSelectedIndex()).getCalidadWifi();
             double tiempo = usuarioActual.enviarMensaje(calidadWifiAmigo);
             jTa_mensaje.getText();
-            administrarBarra br = new administrarBarra(jPb_enviarMensaje, jTa_mensaje,
-                    tiempo);
+            jPb_enviarMensaje.setMaximum((int)tiempo);
+            administrarBarra br = new administrarBarra(jPb_enviarMensaje, jTa_mensaje);
             br.start();
-
-            //JOptionPane.showMessageDialog(this, "Se ha enviado un mensaje.");
+            if (jPb_enviarMensaje.getValue() == jPb_enviarMensaje.getMaximum()) {
+                Date hoy = new Date();
+                Mensaje mensaje = new Mensaje(jTa_mensaje.getText(), "No", hoy, hoy);
+            }
         }
     }//GEN-LAST:event_btn_enviarMensajeActionPerformed
 
@@ -865,9 +863,20 @@ public class Main extends javax.swing.JFrame {
         jTbl_solicitudes.setModel(model);
     }
 
+    public void cargarAmigos() {
+        DefaultListModel model = (DefaultListModel) jList_amigos.getModel();
+        for (int i = 0; i < usuarioActual.getAmigos().size(); i++) {
+            System.out.println("cargar amigos");
+            model.addElement(usuarioActual.getAmigos().get(i));
+        }
+        jList_amigos.setModel(model);
+    }
+
     public void cargarLogin() {
         limpiarTablaBuscarAmigos();
         cargarTablaSolicitudes();
+        cargarAmigos();
+        System.out.println("cargar login");
     }
 
     public void limpiarTablaSolicitudes() {
