@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Onasis Reyes
  */
-public class Persona implements Serializable {
+public abstract class Persona implements Serializable {
 
     private static final long SerialVersionUID = 777L;
     
@@ -66,8 +66,6 @@ public class Persona implements Serializable {
     }
     
     //@Override
-    public void enviarMensaje(){
-        
-    }
-
+    public abstract double enviarMensaje(int calidadWifi);
+    
 }

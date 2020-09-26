@@ -76,5 +76,10 @@ public class Usuario extends Persona implements Serializable {
     public String toString() {
         return "Usuario{" + "nombreUsuario=" + nombreUsuario + ", contrase\u00f1a=" + contraseña + ", chats=" + chats + ", solicitudes=" + solicitudes + ", calidadWifi=" + calidadWifi + '}';
     }
+    
+    @Override
+    public double enviarMensaje(int calidadReceptor){
+        return (calidadReceptor*0.6) + (calidadWifi*0.85);
+    }
 
 }

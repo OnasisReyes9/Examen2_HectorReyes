@@ -71,18 +71,22 @@ public class Main extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTbl_solicitudes = new javax.swing.JTable();
         btn_aceptarSoli = new javax.swing.JButton();
-        jPopupMenu1 = new javax.swing.JPopupMenu();
+        btn_rechazarSolicitud = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList_amigos = new javax.swing.JList<>();
         btn_enviarMensaje = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTa_mensaje = new javax.swing.JTextArea();
+        jPb_enviarMensaje = new javax.swing.JProgressBar();
+        jLabel7 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMI_login = new javax.swing.JMenuItem();
         jMI_registrar = new javax.swing.JMenuItem();
         jMI_aggAmigos = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMI_solicitudes = new javax.swing.JMenuItem();
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 255));
 
@@ -412,14 +416,24 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        btn_rechazarSolicitud.setText("Rechazar Solicitud");
+        btn_rechazarSolicitud.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rechazarSolicitudActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_aceptarSoli)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(btn_rechazarSolicitud)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_aceptarSoli))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
@@ -429,7 +443,9 @@ public class Main extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btn_aceptarSoli)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_aceptarSoli)
+                    .addComponent(btn_rechazarSolicitud))
                 .addContainerGap(37, Short.MAX_VALUE))
         );
 
@@ -466,22 +482,35 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        jTa_mensaje.setColumns(20);
+        jTa_mensaje.setRows(5);
+        jScrollPane4.setViewportView(jTa_mensaje);
+
+        jLabel7.setText("Escriba:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(286, Short.MAX_VALUE)
+                .addContainerGap(452, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel7)
+                                .addComponent(btn_enviarMensaje, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addContainerGap())
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jPb_enviarMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addContainerGap()))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addGap(66, 66, 66))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_enviarMensaje)
-                        .addContainerGap())))
+                        .addGap(71, 71, 71))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -489,14 +518,19 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_enviarMensaje)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jPb_enviarMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jMenu2.setText("File");
-        jMenu2.setEnabled(false);
 
         jMI_login.setText("Login");
         jMI_login.addActionListener(new java.awt.event.ActionListener() {
@@ -523,9 +557,14 @@ public class Main extends javax.swing.JFrame {
         });
         jMenu2.add(jMI_aggAmigos);
 
-        jMenuItem1.setText("Solicitudes Recibidas");
-        jMenuItem1.setEnabled(false);
-        jMenu2.add(jMenuItem1);
+        jMI_solicitudes.setText("Solicitudes Recibidas");
+        jMI_solicitudes.setEnabled(false);
+        jMI_solicitudes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_solicitudesActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMI_solicitudes);
 
         jMenuBar2.add(jMenu2);
 
@@ -594,6 +633,7 @@ public class Main extends javax.swing.JFrame {
                     String[] nRow = {adminUs.getUsuarios().get(i).getNombreUsuario()};
                     model.addRow(nRow);
                     existe = true;
+                    enviarSolicitud = true;
                     jTbl_aggUsuario.setModel(model);
                 }//fin if
             }//fin if
@@ -618,7 +658,9 @@ public class Main extends javax.swing.JFrame {
                     usuarioActual = adminUs.getUsuarios().get(i);
                     login = true;
                     jMI_aggAmigos.setEnabled(true);
+                    jMI_solicitudes.setEnabled(true);
                     jD_login.dispose();
+                    cargarLogin();
                     JOptionPane.showMessageDialog(this, "Bienvenido.");
                 }
             }//fin for
@@ -644,6 +686,7 @@ public class Main extends javax.swing.JFrame {
                     }
                 }
             }
+            adminUs.escribirArchivo();
         }
     }//GEN-LAST:event_btn_enviarSolicitudActionPerformed
 
@@ -688,13 +731,17 @@ public class Main extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No existen usuarios");
         } else {
             if (jTbl_solicitudes.getSelectedRow() >= 0) {
-
                 for (int i = 0; i < adminUS.getUsuarios().size(); i++) {
-                    if (adminUS.getUsuarios().get(i).
-                            equals(usuarioActual.getSolicitudes().get(jTbl_solicitudes.getSelectedRow()))) {
+                    if (adminUS.getUsuarios().get(i).equals(
+                            usuarioActual.getSolicitudes().get(jTbl_solicitudes.getSelectedRow()))) {
+                        adminUS.getUsuarios().get(i).getAmigos().add(usuarioActual);
+                
+                        DefaultListModel modelList = (DefaultListModel) jList_amigos.getModel();
+                        modelList.addElement(adminUS.getUsuarios().get(i));
+                        jList_amigos.setModel(modelList);
+                        
                         usuarioActual.getAmigos().add(adminUS.getUsuarios().get(i));
                         usuarioActual.getSolicitudes().remove(jTbl_solicitudes.getSelectedRow());
-                        adminUS.getUsuarios().get(i).getAmigos().add(usuarioActual);
                     }
                 }
 
@@ -702,10 +749,7 @@ public class Main extends javax.swing.JFrame {
                 model.removeRow(jTbl_solicitudes.getSelectedRow());
                 jTbl_solicitudes.setModel(model);
 
-                DefaultListModel modelList = (DefaultListModel) jList_amigos.getModel();
-                modelList.addElement(adminUS.getUsuarios().get(jTbl_solicitudes.getSelectedRow()));
-                jList_amigos.setModel(modelList);
-
+                cargarArchivo();
                 JOptionPane.showMessageDialog(this, "Se ha aceptado una solicitud.");
             } else {
                 JOptionPane.showMessageDialog(this, "No has seleccionado ningún usuario.");
@@ -722,12 +766,47 @@ public class Main extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (usuarioActual.getAmigos().size() <= 0) {
             JOptionPane.showMessageDialog(this, "No tienes amigos agregados.");
+        } else if (jList_amigos.getSelectedIndex() < 0) {
+            JOptionPane.showMessageDialog(this, "No has seleccioado ningun amigo de la lista.");
+        } else {
+            administradorUsuario adminUs = new administradorUsuario("./usuarios.123");
+            adminUs.cargarArchivo();
+            int calidadWifiAmigo = usuarioActual.getAmigos().get(jList_amigos.getSelectedIndex()).getCalidadWifi();
+            double tiempo = usuarioActual.enviarMensaje(calidadWifiAmigo);
+            jTa_mensaje.getText();
+            administrarBarra br = new administrarBarra(jPb_enviarMensaje, jTa_mensaje,
+                    tiempo);
+            br.start();
+
+            //JOptionPane.showMessageDialog(this, "Se ha enviado un mensaje.");
+        }
+    }//GEN-LAST:event_btn_enviarMensajeActionPerformed
+
+    private void btn_rechazarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rechazarSolicitudActionPerformed
+        // TODO add your handling code here:
+        if (usuarioActual.getSolicitudes().size() <= 0) {
+            JOptionPane.showMessageDialog(this, "No tienes solicitudes.");
         } else if (rootPaneCheckingEnabled) {
             JOptionPane.showMessageDialog(this, "No has seleccioado ningun amigo de la lista.");
         } else {
+            DefaultTableModel model = (DefaultTableModel) jTbl_solicitudes.getModel();
+            model.removeRow(jTbl_solicitudes.getSelectedRow());
+            jTbl_solicitudes.setModel(model);
+
+            usuarioActual.getSolicitudes().remove(jTbl_solicitudes.getSelectedRow());
+            cargarArchivo();
+
             JOptionPane.showMessageDialog(this, "Se ha enviado un mensaje.");
         }
-    }//GEN-LAST:event_btn_enviarMensajeActionPerformed
+    }//GEN-LAST:event_btn_rechazarSolicitudActionPerformed
+
+    private void jMI_solicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_solicitudesActionPerformed
+        // TODO add your handling code here:
+        jD_solicitudes.setModal(true);
+        jD_solicitudes.pack();
+        jD_solicitudes.setLocationRelativeTo(this);
+        jD_solicitudes.setVisible(true);
+    }//GEN-LAST:event_jMI_solicitudesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -762,6 +841,18 @@ public class Main extends javax.swing.JFrame {
                 new Main().setVisible(true);
             }
         });
+    }
+
+    public void cargarArchivo() {
+        administradorUsuario adminUs = new administradorUsuario("./usuarios.123");
+        adminUs.cargarArchivo();
+        for (int i = 0; i < adminUs.getUsuarios().size(); i++) {
+            if (adminUs.getUsuarios().get(i).getNombreUsuario().
+                    equals(usuarioActual.getNombreUsuario())) {
+                adminUs.getUsuarios().set(i, usuarioActual);
+            }
+        }
+        adminUs.escribirArchivo();
     }
 
     public void cargarTablaSolicitudes() {
@@ -834,6 +925,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton btn_enviarMensaje;
     private javax.swing.JButton btn_enviarSolicitud;
     private javax.swing.JButton btn_ingresarLogin;
+    private javax.swing.JButton btn_rechazarSolicitud;
     private javax.swing.JButton btn_registrar;
     private javax.swing.JDialog jD_aggAmigos;
     private javax.swing.JDialog jD_login;
@@ -851,23 +943,25 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JList<String> jList_amigos;
     private javax.swing.JMenuItem jMI_aggAmigos;
     private javax.swing.JMenuItem jMI_login;
     private javax.swing.JMenuItem jMI_registrar;
+    private javax.swing.JMenuItem jMI_solicitudes;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JProgressBar jPb_enviarMensaje;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSpinner jSp_calidadWifi;
     private javax.swing.JTextField jT_apellido;
     private javax.swing.JTextField jT_buscarAmigo;
@@ -877,9 +971,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JTextField jT_nombreUsuario;
     private javax.swing.JTextField jT_telefono;
     private javax.swing.JTextField jT_usuarioLogin;
+    private javax.swing.JTextArea jTa_mensaje;
     private javax.swing.JTable jTbl_aggUsuario;
     private javax.swing.JTable jTbl_solicitudes;
     // End of variables declaration//GEN-END:variables
     private Usuario usuarioActual;
-    private final boolean enviarSolicitud = false;
+    private boolean enviarSolicitud = false;
 }
